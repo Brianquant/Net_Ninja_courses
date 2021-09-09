@@ -9,6 +9,7 @@
 // Removed hard coded values
    public $username;
    private $email;
+   private $password;
 
 // The consturct method passes the arguements dynamically in the declared properties
    public function __construct($username, $email)
@@ -31,9 +32,20 @@
         if(strpos($email, '@') > -1) {
             $this->email = $email;
         } else {
-            echo "Email is not valid";
+            echo "Email is invalid";
         }
+    }
 
+    public function getPassword() {
+        return $this->password;
+    }
+
+    public function setPassword($pw) {
+        if(strlen($pw) > 10) {
+            $this->password = $pw;
+        } else {
+            echo "Password is invalid";
+        }
     }
  }
 
@@ -42,10 +54,19 @@
  $userOne = new User('mario', 'mario@email.com');
  $userTwo = new User('luigi', 'luigi@email.com');
 
- $userOne->setEmail('browser@email.com'); // Overwrite the property $email if condition is true
+$userOne->setEmail('browser@email.com'); // Overwrite the property $email if condition is true (write)
+$userOne->setPassword("dnfjkbjkdfbjs"); // (write)
+echo "<b>User One Email:</b> " . $userOne->getEmail() . '<br>'; // Invoke the get function and returns the value of the property $email (read)
+echo "<b>User One Password:</b> " . $userOne->getPassword() . '<br>'; // (read)
 
- echo $userOne->getEmail() . '<br>'; // Invoke the get function and returns the value of the property $email
- echo $userTwo->getEmail() . '<br>';
+$userTwo->setEmail('JohnDoe@email.com');
+$userTwo->setPassword('suicideCide098@');
+
+echo "<b>User Two Email:</b> " . $userTwo->getEmail() . '<br>';
+echo "<b>User Two Password:</b> " . $userTwo->getPassword() . '<br>';
+
+ 
+
 
 
 
